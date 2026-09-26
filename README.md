@@ -1,8 +1,33 @@
+---
+
+**Mini Project 2: Product Manager — NeuroVault 🧬**
+**Mata Kuliah:** Pemrograman Web (Pertemuan 16 — Mini Project Akhir)
+**Tema Proyek:** Sistem Manajemen Inventaris Implan Sibernetik & Bio-Augmentasi
+**Fokus Utama:** Server-Side Security, PDO Prepared Statements, Post-Redirect-Get (PRG), Anti-CSRF Token, Anti-XSS Escaping, & Operasi CRUD Berbasis MySQL.
+**Engine:** PHP Native + MySQL via PDO (Murni tanpa Framework Frontend/Backend).
+
+---
+
 # 🧬 NeuroVault: Underground Cyberware & Bio-Augmentation Manager
 
 > Sistem Manajemen Inventaris dan Perdagangan Gelap untuk Implan Sibernetik, Augmentasi Neural, dan Organ Sintetis berbasis Web (PHP Native & MySQL).
 
 Sistem ini dirancang untuk operasional klinik sibernetik bawah tanah (**Ripperdoc Clinic**) dengan mengedepankan keamanan tingkat tinggi, arsitektur request yang bersih, serta antarmuka bergaya **cyberpunk dark-terminal murni**.
+
+---
+
+## 🎯 Ikhtisar & Tujuan Proyek
+
+Proyek ini bertujuan untuk merancang dan mengimplementasikan **Sistem Manajemen Produk** berbasis server-side murni menggunakan PHP Native dan MySQL. Dengan mengangkat tema **NeuroVault — Klinik Sibernetik Bawah Tanah**, aplikasi ini mensimulasikan pengelolaan inventori implan yang mencakup berbagai kategori seperti Neural Implant, Combat Cyberware, Ocular Enhancement, dan Bio-Organs.
+
+Aplikasi mengaplikasikan konsep **keamanan berlapis** dengan PDO Prepared Statements untuk mencegah SQL Injection, `htmlspecialchars()` untuk Anti-XSS, token CSRF kriptografik via `random_bytes()`, serta pola **Post-Redirect-Get (PRG)** untuk mencegah duplikasi data saat refresh. Seluruh struktur kode dibangun dengan prinsip **Separation of Concerns (SoC)** yang memisahkan lapisan konfigurasi, logika bisnis, dan presentasi secara rapi.
+
+### 📌 Capaian Pembelajaran
+
+- Memahami siklus hidup request-response di server sebelum dikirimkan ke browser sebagai HTML murni.
+- Menerapkan **keamanan berlapis** (PDO, Anti-XSS, Anti-CSRF, PRG) sebagai standar minimum aplikasi web produksi.
+- Mengimplementasikan **CRUD berbasis MySQL** dengan validasi server-side yang ketat (nama ≥ 3 karakter, harga > 0, stok ≥ 0, nama unik).
+- Membangun antarmuka **Flexbox Grid responsif** dengan dual-theme (Cyber Dark & Clean Light) tanpa library CSS eksternal.
 
 ---
 
