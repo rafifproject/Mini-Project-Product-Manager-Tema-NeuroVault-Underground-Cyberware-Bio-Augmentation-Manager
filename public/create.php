@@ -253,7 +253,7 @@ $categories = ['Neural Implants', 'Combat Cyberware', 'Ocular Optics', 'Bio-Orga
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="inputPrice">
-                            <span>Harga Kredit (§ Eurodollar) <span class="required">*</span></span>
+                            <span>Harga Kredit ($ US Dollar) <span class="required">*</span></span>
                         </label>
                         <input type="number" 
                                name="price" 

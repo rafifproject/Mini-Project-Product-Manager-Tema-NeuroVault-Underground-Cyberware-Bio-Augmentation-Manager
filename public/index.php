@@ -22,8 +22,8 @@ $category = trim($_GET['category'] ?? '');
 
 // ── Build Query ──────────────────────────────────────────────
 if ($search !== '') {
-    $stmt = $pdo->prepare("SELECT * FROM products WHERE name LIKE :q OR category LIKE :q ORDER BY id DESC");
-    $stmt->execute([':q' => "%{$search}%"]);
+    $stmt = $pdo->prepare("SELECT * FROM products WHERE name LIKE :q1 OR category LIKE :q2 ORDER BY id DESC");
+    $stmt->execute([':q1' => "%{$search}%", ':q2' => "%{$search}%"]);
 } elseif ($category !== '') {
     $stmt = $pdo->prepare("SELECT * FROM products WHERE category = :cat ORDER BY id DESC");
     $stmt->execute([':cat' => $category]);
@@ -228,8 +228,8 @@ function e(string $str): string {
                 </div>
                 <div class="stat-card" id="statValuation">
                     <div class="stat-label">Vault Valuation</div>
-                    <div class="stat-value">§ <?= number_format($valuation, 0, ',', '.') ?></div>
-                    <div class="stat-sub">Standard Eurodollars</div>
+                    <div class="stat-value">$ <?= number_format($valuation, 0, ',', '.') ?></div>
+                    <div class="stat-sub">US Dollar</div>
                 </div>
                 <div class="stat-card" id="statStock">
                     <div class="stat-label">Stock Status</div>
@@ -291,7 +291,7 @@ function e(string $str): string {
                             <div class="price-block">
                                 <div class="price-label">Credit Price</div>
                                 <div class="price-value">
-                                    <span class="price-currency">§</span><?= number_format($p['price'], 0, ',', '.') ?>
+                                    <span class="price-currency">$</span><?= number_format($p['price'], 0, ',', '.') ?>
                                 </div>
                             </div>
                             <span class="stock-badge <?= $p['stock'] > 0 ? 'stock-available' : 'stock-empty' ?>">
