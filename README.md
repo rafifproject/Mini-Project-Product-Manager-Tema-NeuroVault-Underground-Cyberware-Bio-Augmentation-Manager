@@ -1,4 +1,4 @@
-﻿# ðŸ§¬ NeuroVault: Underground Cyberware & Bio-Augmentation Manager
+# 🧬 NeuroVault: Underground Cyberware & Bio-Augmentation Manager
 
 > Sistem Manajemen Inventaris dan Perdagangan Gelap untuk Implan Sibernetik, Augmentasi Neural, dan Organ Sintetis berbasis Web (PHP Native & MySQL).
 
@@ -6,27 +6,27 @@ Sistem ini dirancang untuk operasional klinik sibernetik bawah tanah (**Ripperdo
 
 ---
 
-## ðŸ“ Struktur Direktori Proyek
+## 📁 Struktur Direktori Proyek
 
 ```
 product-manager/
-â”œâ”€â”€ config/
-â”‚   â””â”€â”€ db.php               # Konfigurasi & instansiasi koneksi PDO
-â”œâ”€â”€ database/
-â”‚   â””â”€â”€ store_db.sql         # Skema database store_db & tabel products
-â”œâ”€â”€ public/
-â”‚   â”œâ”€â”€ assets/
-â”‚   â”‚   â””â”€â”€ style.css        # Tata letak Box Model & Flexbox bertema Cyberpunk
-â”‚   â”œâ”€â”€ index.php            # READ: Katalog implan, filter pencarian GET, flash alert
-â”‚   â”œâ”€â”€ create.php           # CREATE: Form registrasi implan + validasi + PRG
-â”‚   â”œâ”€â”€ edit.php             # UPDATE: Form modifikasi spesifikasi implan + PRG
-â”‚   â””â”€â”€ delete.php           # DELETE: Handler deaktivasi item aman (POST + CSRF)
-â””â”€â”€ README.md                # Dokumentasi sistem & panduan pengujian
+├── config/
+│   └── db.php               # Konfigurasi & instansiasi koneksi PDO
+├── database/
+│   └── store_db.sql         # Skema database store_db & tabel products
+├── public/
+│   ├── assets/
+│   │   └── style.css        # Tata letak Box Model & Flexbox bertema Cyberpunk
+│   ├── index.php            # READ: Katalog implan, filter pencarian GET, flash alert
+│   ├── create.php           # CREATE: Form registrasi implan + validasi + PRG
+│   ├── edit.php             # UPDATE: Form modifikasi spesifikasi implan + PRG
+│   └── delete.php           # DELETE: Handler deaktivasi item aman (POST + CSRF)
+└── README.md                # Dokumentasi sistem & panduan pengujian
 ```
 
 ---
 
-## ðŸš€ Panduan Instalasi & Setup
+## 🚀 Panduan Instalasi & Setup
 
 ### Prasyarat
 - PHP >= 7.4 (disarankan PHP 8.x)
@@ -41,13 +41,13 @@ product-manager/
    XAMPP   : C:\xampp\htdocs\product-manager\
    ```
 
-2. **Import Database** â€” Buka phpMyAdmin atau MySQL CLI:
+2. **Import Database** — Buka phpMyAdmin atau MySQL CLI:
    ```sql
    SOURCE /path/to/product-manager/database/store_db.sql;
    ```
    Atau import file `store_db.sql` melalui phpMyAdmin.
 
-3. **Konfigurasi Koneksi** â€” Edit `config/db.php` jika diperlukan:
+3. **Konfigurasi Koneksi** — Edit `config/db.php` jika diperlukan:
    ```php
    $host    = 'localhost';
    $dbname  = 'store_db';
@@ -71,7 +71,7 @@ product-manager/
 
 ---
 
-## ðŸ›¡ï¸ Arsitektur Keamanan
+## 🛡️ Arsitektur Keamanan
 
 | Layer | Mekanisme | Implementasi |
 |-------|-----------|-------------|
@@ -84,7 +84,7 @@ product-manager/
 
 ---
 
-## ðŸ—„ï¸ Skema Database
+## 🗄️ Skema Database
 
 ```sql
 CREATE TABLE products (
@@ -100,7 +100,7 @@ CREATE TABLE products (
 
 ---
 
-## âš™ï¸ Teknologi
+## ⚙️ Teknologi
 
 | Komponen | Teknologi |
 |----------|-----------|
@@ -113,9 +113,9 @@ CREATE TABLE products (
 
 ---
 
-## ðŸ–¥ï¸ Tampilan Antarmuka Aplikasi
+## 🖥️ Tampilan Antarmuka Aplikasi
 
-### Halaman Utama â€” Vault Inventory Overview (`index.php`)
+### Halaman Utama — Vault Inventory Overview (`index.php`)
 
 Halaman utama menampilkan seluruh katalog implan sibernetik dalam bentuk **grid kartu (Flexbox)**. Fitur utama:
 - **Sidebar navigasi** di kiri: logo, menu navigasi, quick filter kategori, dan tombol theme toggle
@@ -128,7 +128,7 @@ Halaman utama menampilkan seluruh katalog implan sibernetik dalam bentuk **grid 
 
 ---
 
-### Halaman Create â€” Daftarkan Implan Baru (`create.php`)
+### Halaman Create — Daftarkan Implan Baru (`create.php`)
 
 Halaman form untuk mendaftarkan implan baru ke dalam vault. Fitur utama:
 - **Form input**: Nama implan (min. 3 karakter), Kategori (dropdown), Harga Kredit ($ US Dollar), Stok, dan Deskripsi opsional
@@ -140,7 +140,7 @@ Halaman form untuk mendaftarkan implan baru ke dalam vault. Fitur utama:
 
 ---
 
-### Halaman Edit â€” Modifikasi Spesifikasi Implan (`edit.php`)
+### Halaman Edit — Modifikasi Spesifikasi Implan (`edit.php`)
 
 Halaman form untuk memperbarui data implan yang sudah terdaftar. Fitur utama:
 - **Form pre-filled**: semua field terisi otomatis dengan data implan yang dipilih dari database
@@ -160,9 +160,9 @@ Tampilan index setelah seluruh skenario uji dijalankan, menampilkan semua item y
 
 ---
 
-## ðŸŽ¨ Fitur Antarmuka
+## 🎨 Fitur Antarmuka
 
-- **Dual Theme**: Cyber Dark (default) & Clean Light â€” toggle via tombol Switch di sidebar
+- **Dual Theme**: Cyber Dark (default) & Clean Light — toggle via tombol Switch di sidebar
 - **Sidebar Navigation**: Command Center, Quick Category Filters dengan jumlah item per kategori
 - **Stats Dashboard**: Total Unit, Valuasi Vault (US Dollar), Status Stok, Token CSRF
 - **Responsive Flexbox Grid**: Kartu implan otomatis menyesuaikan kolom layar
@@ -172,167 +172,166 @@ Tampilan index setelah seluruh skenario uji dijalankan, menampilkan semua item y
 
 ---
 
-## ðŸ§ª Matriks Skenario Uji & Verifikasi Penilaian Dosen
+## 🧪 Matriks Skenario Uji & Verifikasi Penilaian Dosen
 
 Setiap skenario pengujian di bawah ini mencerminkan checklist demonstrasi yang dinilai oleh dosen. Seluruh skenario telah **diuji langsung** dan bukti screenshot disertakan.
 
 ---
 
-### Skenario 1 â€” Create Sukses
+### Skenario 1 — Create Sukses
 
 | Atribut | Detail |
 |---------|--------|
 | **Aksi / Data Masukan** | Nama: Titanium Bone Lacing, Kat: Combat Cyberware, Harga: 24000000, Stok: 5 |
 | **Perilaku yang Diharapkan** | Tersimpan di database, redirect ke index.php, banner sukses hijau muncul |
-| **Hasil Uji** | LULUS |
+| **Hasil Uji** | LULUS ✅ |
 | **Bukti** | Banner hijau muncul, item tampil di grid posisi teratas |
 
-![Skenario 1 â€” Create Sukses](public/assets/screenshots/ss_test1_create_sukses.png)
+![Skenario 1 - Create Sukses](public/assets/screenshots/ss_test1_create_sukses.png)
 
 ---
 
-### Skenario 2 â€” Validasi Nama Pendek
+### Skenario 2 — Validasi Nama Pendek
 
 | Atribut | Detail |
 |---------|--------|
 | **Aksi / Data Masukan** | Nama: ZX (kurang dari 3 karakter) |
 | **Perilaku yang Diharapkan** | Ditolak, form tetap tampil, muncul pesan: "Nama minimal 3 karakter." |
-| **Hasil Uji** | LULUS |
+| **Hasil Uji** | LULUS ✅ |
 | **Bukti** | Sistem menolak, pesan validasi tampil |
 
-![Skenario 2 â€” Validasi Nama Pendek](public/assets/screenshots/ss_test2_nama_pendek.png)
+![Skenario 2 - Validasi Nama Pendek](public/assets/screenshots/ss_test2_nama_pendek.png)
 
 ---
 
-### Skenario 3 â€” Validasi Angka Negatif
+### Skenario 3 — Validasi Angka Negatif
 
 | Atribut | Detail |
 |---------|--------|
 | **Aksi / Data Masukan** | Harga: -1000 atau Stok: -4 |
 | **Perilaku yang Diharapkan** | Ditolak dengan pesan kesalahan validasi numerik |
-| **Hasil Uji** | LULUS |
+| **Hasil Uji** | LULUS ✅ |
 | **Bukti** | Error validasi tampil, data tidak tersimpan |
 
-![Skenario 3 â€” Validasi Angka Negatif](public/assets/screenshots/ss_test3_angka_negatif.png)
+![Skenario 3 - Validasi Angka Negatif](public/assets/screenshots/ss_test3_angka_negatif.png)
 
 ---
 
-### Skenario 4 â€” Duplikasi Item Unik
+### Skenario 4 — Duplikasi Item Unik
 
 | Atribut | Detail |
 |---------|--------|
 | **Aksi / Data Masukan** | Mendaftarkan nama "Titanium Bone Lacing" yang sudah ada |
 | **Perilaku yang Diharapkan** | Ditolak elegan oleh exception 23000 tanpa fatal error PDO |
-| **Hasil Uji** | LULUS |
+| **Hasil Uji** | LULUS ✅ |
 | **Bukti** | Notifikasi duplikasi muncul tanpa crash aplikasi |
 
-![Skenario 4 â€” Duplikasi Item](public/assets/screenshots/ss_test4_duplikasi.png)
+![Skenario 4 - Duplikasi Item](public/assets/screenshots/ss_test4_duplikasi.png)
 
 ---
 
-### Skenario 5 â€” Injeksi XSS
+### Skenario 5 — Injeksi XSS
 
 | Atribut | Detail |
 |---------|--------|
 | **Aksi / Data Masukan** | Nama item: `<b>CyberArm</b><script>alert(1)</script>` |
 | **Perilaku yang Diharapkan** | Ditampilkan sebagai teks biasa, script tidak dieksekusi |
-| **Hasil Uji** | LULUS |
+| **Hasil Uji** | LULUS ✅ |
 | **Bukti** | `htmlspecialchars()` mengubah tag menjadi HTML entity, konten aman |
 
-![Skenario 5 â€” Injeksi XSS](public/assets/screenshots/ss_test5_xss.png)
+![Skenario 5 - Injeksi XSS](public/assets/screenshots/ss_test5_xss.png)
 
 ---
 
-### Skenario 6 â€” Pencegahan Data Ganda (PRG)
+### Skenario 6 — Pencegahan Data Ganda (PRG)
 
 | Atribut | Detail |
 |---------|--------|
 | **Aksi / Data Masukan** | Tambah data sukses, lalu tekan Refresh (F5) browser |
 | **Perilaku yang Diharapkan** | Tidak ada dialog "Resubmit Form", tidak ada penggandaan data |
-| **Hasil Uji** | LULUS |
+| **Hasil Uji** | LULUS ✅ |
 | **Bukti** | Setelah POST, redirect ke halaman GET; F5 hanya reload GET page |
 
-![Skenario 6 â€” PRG Pattern](public/assets/screenshots/ss_test6_prg.png)
+![Skenario 6 - PRG Pattern](public/assets/screenshots/ss_test6_prg.png)
 
 ---
 
-### Skenario 7 â€” Proteksi Eksekusi GET Delete
+### Skenario 7 — Proteksi Eksekusi GET Delete
 
 | Atribut | Detail |
 |---------|--------|
 | **Aksi / Data Masukan** | Buka URL langsung: `delete.php?id=1` via address bar |
 | **Perilaku yang Diharapkan** | Sistem menolak, request method bukan POST |
-| **Hasil Uji** | LULUS |
+| **Hasil Uji** | LULUS ✅ |
 | **Bukti** | HTTP 405 Method Not Allowed dikembalikan server |
 
-![Skenario 7 â€” GET Delete Protection](public/assets/screenshots/ss_test7_get_delete.png)
+![Skenario 7 - GET Delete Protection](public/assets/screenshots/ss_test7_get_delete.png)
 
 ---
 
-### Skenario 8 â€” Proteksi Token CSRF
+### Skenario 8 — Proteksi Token CSRF
 
 | Atribut | Detail |
 |---------|--------|
 | **Aksi / Data Masukan** | Token CSRF kriptografik diinisialisasi per sesi (`bin2hex(random_bytes(32))`) |
-| **Perilaku yang Diharapkan** | Token tampil di dashboard; POST tanpa/token palsu â†’ HTTP 403 |
-| **Hasil Uji** | LULUS |
+| **Perilaku yang Diharapkan** | Token tampil di dashboard; POST tanpa/token palsu → HTTP 403 |
+| **Hasil Uji** | LULUS ✅ |
 | **Bukti** | Stat card menampilkan CSRF_PASS_XXXX; verifikasi via `hash_equals()` aktif |
 
-![Skenario 8 â€” CSRF Token](public/assets/screenshots/ss_test8_csrf.png)
+![Skenario 8 - CSRF Token](public/assets/screenshots/ss_test8_csrf.png)
 
 ---
 
-### Skenario 9 â€” Fitur Pencarian GET
+### Skenario 9 — Fitur Pencarian GET
 
 | Atribut | Detail |
 |---------|--------|
 | **Aksi / Data Masukan** | Kata kunci: "neural" atau "titanium" di kolom pencarian |
 | **Perilaku yang Diharapkan** | Query berparameter dieksekusi, item yang cocok ditampilkan |
-| **Hasil Uji** | LULUS |
+| **Hasil Uji** | LULUS ✅ |
 | **Bukti** | `WHERE name LIKE :q1 OR category LIKE :q2` berjalan akurat |
 
 Pencarian "neural":
 
-![Skenario 9 â€” Cari neural](public/assets/screenshots/ss_test9_search_neural.png)
+![Skenario 9 - Cari neural](public/assets/screenshots/ss_test9_search_neural.png)
 
 Pencarian "titanium":
 
-![Skenario 9 â€” Cari titanium](public/assets/screenshots/ss_test9_search_titanium.png)
+![Skenario 9 - Cari titanium](public/assets/screenshots/ss_test9_search_titanium.png)
 
 ---
 
-### Skenario 10 â€” Responsivitas Layar (Flexbox)
+### Skenario 10 — Responsivitas Layar (Flexbox)
 
 | Atribut | Detail |
 |---------|--------|
 | **Aksi / Data Masukan** | Kecilkan jendela browser menjadi ~400px (simulasi ponsel) |
 | **Perilaku yang Diharapkan** | Kartu menyusun ulang menjadi satu kolom vertikal rapi |
-| **Hasil Uji** | LULUS |
+| **Hasil Uji** | LULUS ✅ |
 | **Bukti** | Grid Flexbox responsif: sidebar terlipat, kartu single-column |
 
-![Skenario 10 â€” Responsive](public/assets/screenshots/ss_test10_responsive.png)
+![Skenario 10 - Responsive](public/assets/screenshots/ss_test10_responsive.png)
 
 ---
 
-## ðŸ“Š Ringkasan Hasil Pengujian
+## 📊 Ringkasan Hasil Pengujian
 
 | No | Skenario Pengujian | Bukti Singkat | Status |
-|----|-------------------|---------------|--------|
-| 1 | Create Sukses | Banner hijau + item tampil di grid | LULUS |
-| 2 | Validasi Nama Pendek | Pesan "Nama minimal 3 karakter" tampil | LULUS |
-| 3 | Validasi Angka Negatif | Error validasi numerik ditampilkan | LULUS |
-| 4 | Duplikasi Item Unik | Exception 23000 ditangkap elegan | LULUS |
-| 5 | Injeksi XSS | Tag di-escape menjadi teks biasa | LULUS |
-| 6 | Pencegahan Data Ganda (PRG) | F5 tidak memunculkan dialog resubmit | LULUS |
-| 7 | Proteksi GET Delete | HTTP 405 dikembalikan | LULUS |
-| 8 | Proteksi Token CSRF | Token tampil di dashboard, hash_equals aktif | LULUS |
-| 9 | Pencarian GET | Filter :q1 & :q2 berjalan akurat | LULUS |
-| 10 | Responsivitas Layar | Single-column pada viewport 400px | LULUS |
+|----|--------------------|---------------|--------|
+| 1 | Create Sukses | Banner hijau + item tampil di grid | LULUS ✅ |
+| 2 | Validasi Nama Pendek | Pesan "Nama minimal 3 karakter" tampil | LULUS ✅ |
+| 3 | Validasi Angka Negatif | Error validasi numerik ditampilkan | LULUS ✅ |
+| 4 | Duplikasi Item Unik | Exception 23000 ditangkap elegan | LULUS ✅ |
+| 5 | Injeksi XSS | Tag di-escape menjadi teks biasa | LULUS ✅ |
+| 6 | Pencegahan Data Ganda (PRG) | F5 tidak memunculkan dialog resubmit | LULUS ✅ |
+| 7 | Proteksi GET Delete | HTTP 405 dikembalikan | LULUS ✅ |
+| 8 | Proteksi Token CSRF | Token tampil di dashboard, hash_equals aktif | LULUS ✅ |
+| 9 | Pencarian GET | Filter :q1 & :q2 berjalan akurat | LULUS ✅ |
+| 10 | Responsivitas Layar | Single-column pada viewport 400px | LULUS ✅ |
 
-**Total: 10/10 Skenario LULUS**
+**Total: 10/10 Skenario LULUS ✅**
 
 ---
 
-> **NeuroVault v2.4** â€” *Ripperdoc OS Terminal*
+> **NeuroVault v2.4** — *Ripperdoc OS Terminal*
 > "Every body part is just hardware waiting for an upgrade."
-
