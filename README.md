@@ -1,18 +1,14 @@
----
-
-**Mini Project 2: Product Manager — NeuroVault 🧬**
-**Mata Kuliah:** Pemrograman Web (Pertemuan 16 — Mini Project Akhir)
-**Tema Proyek:** Sistem Manajemen Inventaris Implan Sibernetik & Bio-Augmentasi
-**Fokus Utama:** Server-Side Security, PDO Prepared Statements, Post-Redirect-Get (PRG), Anti-CSRF Token, Anti-XSS Escaping, & Operasi CRUD Berbasis MySQL.
-**Engine:** PHP Native + MySQL via PDO (Murni tanpa Framework Frontend/Backend).
-
----
-
 # 🧬 NeuroVault: Underground Cyberware & Bio-Augmentation Manager
 
 > Sistem Manajemen Inventaris dan Perdagangan Gelap untuk Implan Sibernetik, Augmentasi Neural, dan Organ Sintetis berbasis Web (PHP Native & MySQL).
 
-Sistem ini dirancang untuk operasional klinik sibernetik bawah tanah (**Ripperdoc Clinic**) dengan mengedepankan keamanan tingkat tinggi, arsitektur request yang bersih, serta antarmuka bergaya **cyberpunk dark-terminal murni**.
+| | |
+|---|---|
+| **Mini Project** | 2: Product Manager — NeuroVault 🧬 |
+| **Mata Kuliah** | Pemrograman Web (Pertemuan 3 — Mini Project) |
+| **Tema Proyek** | Sistem Manajemen Inventaris Implan Sibernetik & Bio-Augmentasi |
+| **Fokus Utama** | Server-Side Security, PDO Prepared Statements, PRG, Anti-CSRF, Anti-XSS, CRUD MySQL |
+| **Engine** | PHP Native + MySQL via PDO (tanpa Framework Frontend/Backend) |
 
 ---
 
