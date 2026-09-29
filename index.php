@@ -8,7 +8,7 @@
  */
 
 session_start();
-require_once __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/config/db.php';
 
 // ── Initialize CSRF Token ────────────────────────────────────
 $_SESSION['csrf'] ??= bin2hex(random_bytes(32));

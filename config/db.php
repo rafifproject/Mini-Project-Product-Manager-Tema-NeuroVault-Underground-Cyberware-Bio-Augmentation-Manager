@@ -9,10 +9,11 @@
  *   - Emulated prepares DISABLED for true parameterized queries
  */
 
-$host    = 'localhost';
-$dbname  = 'store_db';
-$user    = 'root';
-$pass    = '';
+// ⚠️  GANTI dengan kredensial dari InfinityFree cPanel → MySQL Databases
+$host    = 'sql200.infinityfree.com'; // host MySQL dari cPanel kamu
+$dbname  = 'if0_42576936_store_db';   // nama database (prefix username)
+$user    = 'if0_42576936';            // MySQL username
+$pass    = 'ISI_PASSWORD_KAMU';       // password MySQL
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host={$host};dbname={$dbname};charset={$charset}";

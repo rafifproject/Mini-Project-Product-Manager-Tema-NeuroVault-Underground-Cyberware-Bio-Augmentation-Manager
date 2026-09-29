@@ -1,5 +1,13 @@
 # 🧬 NeuroVault: Underground Cyberware & Bio-Augmentation Manager
 
+<div align="center">
+
+[![🌐 Live Demo](https://img.shields.io/badge/🌐%20Live%20Demo-kedaikyushu.great--site.net-00ff9f?style=for-the-badge&logo=google-chrome&logoColor=black)](https://kedaikyushu.great-site.net/?i=1)
+
+**🔗 Akses Langsung: [https://kedaikyushu.great-site.net/?i=1](https://kedaikyushu.great-site.net/?i=1)**
+
+</div>
+
 > Sistem Manajemen Inventaris dan Perdagangan Gelap untuk Implan Sibernetik, Augmentasi Neural, dan Organ Sintetis berbasis Web (PHP Native & MySQL).
 
 | | |
@@ -30,18 +38,17 @@ Aplikasi mengaplikasikan konsep **keamanan berlapis** dengan PDO Prepared Statem
 ## 📁 Struktur Direktori Proyek
 
 ```
-product-manager/
+product-manager/          ← upload semua isi ini ke htdocs/
 ├── config/
 │   └── db.php               # Konfigurasi & instansiasi koneksi PDO
 ├── database/
-│   └── store_db.sql         # Skema database store_db & tabel products
-├── public/
-│   ├── assets/
-│   │   └── style.css        # Tata letak Box Model & Flexbox bertema Cyberpunk
-│   ├── index.php            # READ: Katalog implan, filter pencarian GET, flash alert
-│   ├── create.php           # CREATE: Form registrasi implan + validasi + PRG
-│   ├── edit.php             # UPDATE: Form modifikasi spesifikasi implan + PRG
-│   └── delete.php           # DELETE: Handler deaktivasi item aman (POST + CSRF)
+│   └── store_db.sql         # Skema database (import via phpMyAdmin)
+├── assets/
+│   └── style.css            # Tata letak Box Model & Flexbox bertema Cyberpunk
+├── index.php                # READ: Katalog implan, filter pencarian GET, flash alert
+├── create.php               # CREATE: Form registrasi implan + validasi + PRG
+├── edit.php                 # UPDATE: Form modifikasi spesifikasi implan + PRG
+├── delete.php               # DELETE: Handler deaktivasi item aman (POST + CSRF)
 └── README.md                # Dokumentasi sistem & panduan pengujian
 ```
 

@@ -3,8 +3,8 @@
 -- Database Schema & Seed Data
 -- ============================================================
 
-CREATE DATABASE IF NOT EXISTS store_db;
-USE store_db;
+-- NOTE: Di shared hosting, hapus CREATE DATABASE & USE.
+-- Pastikan database sudah dibuat via cPanel/phpMyAdmin, lalu import file ini ke database tersebut.
 
 CREATE TABLE IF NOT EXISTS products (
     id          INT AUTO_INCREMENT PRIMARY KEY,

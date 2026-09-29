@@ -1,14 +1,15 @@
 <?php
 /**
- * NeuroVault — UPDATE: Modifikasi Spesifikasi Implan (edit.php)
+ * NeuroVault — CREATE: Registrasi Implan Cyberware Baru (create.php)
  * 
- * Pre-fills form with existing data via prepared statement.
- * Same server-side validation as create.php.
- * PRG pattern after successful update.
+ * Form registration with full server-side validation.
+ * Sticky form on validation failure.
+ * Duplicate name handled via PDOException 23000.
+ * PRG pattern after successful insert.
  */
 
 session_start();
-require_once __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/config/db.php';
 
 // ── Initialize CSRF Token ────────────────────────────────────
 $_SESSION['csrf'] ??= bin2hex(random_bytes(32));
@@ -38,55 +39,9 @@ function getCatClass(string $cat): string {
     return $map[$cat] ?? 'default';
 }
 
-function serialNumber(int $id): string {
-    return '#NV-' . str_pad($id * 317 % 10000, 4, '0', STR_PAD_LEFT);
-}
-
-// ── Validate ID ──────────────────────────────────────────────
-$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT) ?: filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
-
-if (!$id) {
-    http_response_code(404);
-    echo '<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8">';
-    echo '<title>404 — Not Found</title>';
-    echo '<style>body{background:#0a0e1a;color:#ff0055;font-family:"Courier New",monospace;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;}';
-    echo '.err{border:1px solid #ff0055;padding:2rem;max-width:500px;text-align:center;border-radius:8px;background:#131b2e;}';
-    echo 'h1{font-size:1.2rem;margin-bottom:1rem;} p{color:#94a3b8;font-size:.85rem;} a{color:#00f2fe;}</style></head>';
-    echo '<body><div class="err"><h1>⚠️ 404 — ITEM NOT FOUND</h1>';
-    echo '<p>ID implan tidak valid atau tidak ditemukan.</p>';
-    echo '<p><a href="index.php">← Kembali ke Vault</a></p>';
-    echo '</div></body></html>';
-    exit;
-}
-
-// ── Fetch Existing Product ───────────────────────────────────
-$fetchStmt = $pdo->prepare("SELECT * FROM products WHERE id = :id");
-$fetchStmt->execute([':id' => $id]);
-$product = $fetchStmt->fetch();
-
-if (!$product) {
-    http_response_code(404);
-    echo '<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8">';
-    echo '<title>404 — Not Found</title>';
-    echo '<style>body{background:#0a0e1a;color:#ff0055;font-family:"Courier New",monospace;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;}';
-    echo '.err{border:1px solid #ff0055;padding:2rem;max-width:500px;text-align:center;border-radius:8px;background:#131b2e;}';
-    echo 'h1{font-size:1.2rem;margin-bottom:1rem;} p{color:#94a3b8;font-size:.85rem;} a{color:#00f2fe;}</style></head>';
-    echo '<body><div class="err"><h1>⚠️ 404 — ITEM NOT FOUND</h1>';
-    echo '<p>Implan dengan ID tersebut tidak ditemukan dalam vault.</p>';
-    echo '<p><a href="index.php">← Kembali ke Vault</a></p>';
-    echo '</div></body></html>';
-    exit;
-}
-
 // ── Form State ───────────────────────────────────────────────
-$errors = [];
-$old    = [
-    'name'        => $product['name'],
-    'category'    => $product['category'],
-    'price'       => $product['price'],
-    'stock'       => $product['stock'],
-    'description' => $product['description'] ?? '',
-];
+$errors      = [];
+$old         = ['name' => '', 'category' => '', 'price' => '', 'stock' => '', 'description' => ''];
 
 // ── POST Handler ─────────────────────────────────────────────
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -121,11 +76,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'Kuantitas stok harus berupa bilangan bulat dan tidak boleh negatif.';
     }
 
-    // ── Update if No Errors ──────────────────────────────────
+    // ── Insert if No Errors ──────────────────────────────────
     if (empty($errors)) {
         try {
             $stmt = $pdo->prepare(
-                "UPDATE products SET name = :name, category = :category, description = :description, price = :price, stock = :stock WHERE id = :id"
+                "INSERT INTO products (name, category, description, price, stock) VALUES (:name, :category, :description, :price, :stock)"
             );
             $stmt->execute([
                 ':name'        => $name,
@@ -133,11 +88,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ':description' => $description ?: null,
                 ':price'       => $price,
                 ':stock'       => $stock,
-                ':id'          => $id,
             ]);
 
             // PRG: Redirect to prevent resubmit
-            header("Location: index.php?status=updated");
+            header("Location: index.php?status=created");
             exit;
 
         } catch (PDOException $e) {
@@ -152,15 +106,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // ── Category Options ─────────────────────────────────────────
 $categories = ['Neural Implants', 'Combat Cyberware', 'Ocular Optics', 'Bio-Organs', 'Umum'];
-$serial     = serialNumber($id);
 ?>
 <!DOCTYPE html>
 <html lang="id" data-theme="<?= e($theme) ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NeuroVault — Modifikasi spesifikasi implan cyberware.">
-    <title>NeuroVault — Edit Implan: <?= e($product['name']) ?></title>
+    <meta name="description" content="NeuroVault — Registrasi implan cyberware baru ke vault repository.">
+    <title>NeuroVault — Daftarkan Implan Baru</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -187,7 +140,7 @@ $serial     = serialNumber($id);
                     <span>Vault Inventory</span>
                     <span class="nav-badge"><?= $totalItems ?></span>
                 </a>
-                <a href="create.php" class="nav-item" id="navCreate">
+                <a href="create.php" class="nav-item active" id="navCreate">
                     <span class="nav-icon">+</span>
                     <span>Daftarkan Implan Baru</span>
                 </a>
@@ -247,10 +200,10 @@ $serial     = serialNumber($id);
                 <a href="index.php" class="back-link" id="backLink">← Kembali ke Katalog Vault (index.php)</a>
 
                 <div class="form-title">
-                    <span>Modifikasi Spesifikasi Implan</span>
-                    <span class="file-badge">edit.php</span>
+                    <span>Registrasi Implan Cyberware Baru</span>
+                    <span class="file-badge">create.php</span>
                 </div>
-                <p class="form-subtitle">EDITING UNIT <?= e($serial) ?> // PREPARED STATEMENT UPDATE // PRG REDIRECT ENFORCED</p>
+                <p class="form-subtitle">FORMULIR VALIDASI DUA-ARAH // STANDAR ENKRIPSI POST & CSRF DILINDUNGI // ENKRIPSI SH-256</p>
             </div>
 
             <!-- Error Messages -->
@@ -262,10 +215,8 @@ $serial     = serialNumber($id);
             </ul>
             <?php endif; ?>
 
-            <!-- Edit Form -->
-            <form method="POST" action="edit.php?id=<?= $id ?>" class="form-container" id="editForm">
-                <input type="hidden" name="id" value="<?= $id ?>">
-
+            <!-- Registration Form -->
+            <form method="POST" action="create.php" class="form-container" id="createForm">
                 <!-- Nama Implan -->
                 <div class="form-row single">
                     <div class="form-group">
@@ -320,7 +271,7 @@ $serial     = serialNumber($id);
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label" for="inputStock">
-                            <span>Kuantitas Stok Saat Ini <span class="required">*</span></span>
+                            <span>Kuantitas Stok Awal <span class="required">*</span></span>
                         </label>
                         <input type="number" 
                                name="stock" 
@@ -334,13 +285,13 @@ $serial     = serialNumber($id);
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="inputSerial">
-                            <span>Nomor Serial Vault</span>
+                            <span>Nomor Serial Vault (Auto)</span>
                             <span class="form-hint">Read-only sistem</span>
                         </label>
                         <input type="text" 
                                id="inputSerial" 
                                class="form-input readonly" 
-                               value="<?= e($serial) ?>" 
+                               value="#NV-AUTO-GENERATED" 
                                readonly 
                                tabindex="-1">
                     </div>
@@ -366,7 +317,7 @@ $serial     = serialNumber($id);
                     <a href="index.php" class="btn btn-secondary" id="btnCancel">Batal / Kembali</a>
                     <button type="reset" class="btn btn-reset" id="btnReset">Reset Form</button>
                     <button type="submit" class="btn btn-primary" id="btnSubmit">
-                        🔄 Perbarui Spesifikasi Implan
+                        📦 Simpan ke Vault Repository
                     </button>
                 </div>
             </form>
